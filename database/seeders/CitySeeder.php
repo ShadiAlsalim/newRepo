@@ -11,30 +11,30 @@ class CitySeeder extends Seeder
     /**
      * Run the database seeds.
      */
-   
-        public function run(): void
+
+    public function run(): void
     {
         city::create([
-            'name'=> 'Damascus',
-          ]);          
+            'name' => 'Damascus',
+        ]);
         city::create([
-            'name'=> 'lattakia',
-          ]);          
+            'name' => 'lattakia',
+        ]);
         city::create([
-            'name'=> 'homs',
-          ]);          
+            'name' => 'homs',
+        ]);
         city::create([
-            'name'=> 'hama',
-          ]);          
+            'name' => 'hama',
+        ]);
         city::create([
-            'name'=> 'tartous',
-          ]);          
+            'name' => 'tartous',
+        ]);
         city::create([
-            'name'=> 'aleppo',
-          ]);          
+            'name' => 'aleppo',
+        ]);
         city::create([
-            'name'=> 'ohter',
-          ]);          
+            'name' => 'other',
+        ]);
     }
-    
+
 }
