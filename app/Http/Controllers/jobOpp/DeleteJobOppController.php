@@ -1,29 +1,30 @@
 <?php
-
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\DeleteJobOppService;
 use App\Http\Responses\ResponseService;
-use App\Services\CreateJobOppService;
 use Illuminate\Http\Request;
 use Throwable;
 
-
-class CreateJobOppController extends Controller
+class DeleteJobOppControllers extends Controller
 {
-    private CreateJobOppService $create;
-    public function __construct(CreateJobOppService $create)
+    private DeleteJobOppService $delete;
+    public function __construct(DeleteJobOppService $delete)
     {
-        $this->create = $create;
+        $this->delete = $delete;
     }
 
-    public function create(Request $request)
+    public function delete(Request $request, $id)
     {
         try {
-            $data = $this->create->Create($request->validated());
+            $data = $this->delete->delete($request, $id);
             return ResponseService::success($data['massage'], $data['data']);
         } catch (Throwable $error) {
             return ResponseService::error('An error occurred', $error->getMessage());
         }
     }
 }
+
+
+// return response()->json(['message'=> ' ' , 'data' =>[ ] ],status);

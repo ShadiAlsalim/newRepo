@@ -10,6 +10,12 @@ use App\Http\Controllers\auth\ResendCodeControllers;
 use App\Http\Controllers\auth\ResetPasswordControllers;
 use App\Http\Controllers\auth\VerificationControllers;
 use App\Http\Controllers\TestingControllers;
+use App\Http\Controllers\auth\CreateJobOppController;
+use App\Http\Controllers\auth\DeleteJobOppControllers;
+use App\Http\Controllers\auth\EditJobOppController;
+use App\Http\Controllers\auth\ShowCompanyController;
+use App\Services\ShowCompanyService;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,4 +54,9 @@ Route::get('/logout', [LogoutControllers::class, 'logout'])->middleware('auth:sa
 Route::get('/deleteAccount', [DeleteAccountControllers::class, 'delete'])->middleware('auth:sanctum');
 ;
 ///////////////// Company ///////////////////////////////
-Route::put('/CreateCompany', [CreateCompanyController::class, 'create']);
+Route::put('/CreateCompany', [CreateCompanyController::class, 'create'])->middleware('auth:sanctum');
+Route::post('/PostJob', [CreateJobOppController::class, 'create'])->middleware('auth:sanctum');
+Route::get('/ShowCompany/{id}', [ShowCompanyController::class, 'show']);
+Route::get('/ShowAllCompanies', [ShowCompanyController::class, 'show_all']);
+Route::put('/EditJob/{id}', [EditJobOppController::class, 'edit'])->middleware('auth:sanctum');
+Route::get('/DeleteJob/{id}', [DeleteJobOppControllers::class, 'delete'])->middleware('auth:sanctum');

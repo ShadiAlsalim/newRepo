@@ -4,23 +4,23 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ResponseService;
-use App\Services\CreateJobOppService;
+use App\Services\EditJobOppService;
 use Illuminate\Http\Request;
 use Throwable;
 
 
-class CreateJobOppController extends Controller
+class EditJobOppController extends Controller
 {
-    private CreateJobOppService $create;
-    public function __construct(CreateJobOppService $create)
+    private EditJobOppService $edit;
+    public function __construct(EditJobOppService $edit)
     {
-        $this->create = $create;
+        $this->edit = $edit;
     }
 
-    public function create(Request $request)
+    public function edit(Request $request, $id)
     {
         try {
-            $data = $this->create->Create($request->validated());
+            $data = $this->edit->edit($request->validated(), $id);
             return ResponseService::success($data['massage'], $data['data']);
         } catch (Throwable $error) {
             return ResponseService::error('An error occurred', $error->getMessage());
